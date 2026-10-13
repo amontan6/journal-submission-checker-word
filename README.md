@@ -25,13 +25,6 @@ export is the visible words and nothing else. Four things vanish:
 | **Field codes** | Whether a citation came from Zotero or was typed by hand is the single best predictor of which reference entries are wrong. |
 | **Hyperlink targets** | A link reading `github.com/lab/project` can point at a private working copy. Both render as plain text identically. |
 
-The last one is worth dwelling on. In `paper-tracked.docx` the Methods and Data
-availability sections both contain a link displaying
-`github.com/montano-lab/scfv-binding-oracle`. One targets that repository. The
-other targets `github.com/amontano-private/scfv-oracle-WORKING-COPY`. Export to
-`.txt` and the two are indistinguishable; the agent reading the archive flags it
-immediately.
-
 Heading structure survives too, so the agent knows which section a finding is in
 and can tell you where to look.
 
@@ -108,41 +101,6 @@ get all five checks.
 
 ## Files here
 
-- `paper.docx` — test manuscript with eleven planted problems that survive a text export
-- `paper-tracked.docx` — test manuscript with six **Word-native** planted problems that do not
-- `make_docx.py` — rebuilds `paper.docx` (needs `python-docx`)
-- `make_docx_word_native.py` — rebuilds `paper-tracked.docx` (stdlib only)
-- `docx_extract.py` — the extractor the agent calls (stdlib only)
 - `journal-submission-checker-word.md` — the agent
+- `docx_extract.py` — the extractor the agent calls (stdlib only)
 - `install.sh` — installs the agent and extractor for Claude Code
-- `paper.txt`, `paper.md` — old exports, kept so you can compare what they lose
-
-### The Word-native planted problems
-
-In `paper-tracked.docx`, for grading a run:
-
-| # | Problem | Where |
-| --- | --- | --- |
-| W1 | Unaccepted tracked replacement: "useful" deleted, "state-of-the-art" inserted | Abstract |
-| W2 | Unaccepted tracked deletion, "Nobody has attempted this for scFvs." | Introduction |
-| W3 | Two unresolved comments, one asking whether the accession is public | Introduction, Methods |
-| W4 | Hyperlink displaying the public repo, targeting a private working copy | Data availability |
-| W5 | Broken cross-reference, "Error! Reference source not found." | Methods, Binding assay |
-| W6 | Live Zotero field code for a reference absent from the list | Data availability |
-
-W6 is the interesting one: Koenig et al. (2017) is cited through a real Zotero
-field and has no entry in the reference list. The field code proves the citation
-was inserted from a library, which tells the author exactly where to look.
-
-W1 is a del/ins **pair**, which is what Word writes when you replace a word
-rather than add one. A grader should expect both halves reported, and should
-expect the agent to notice that accepting the insertion leaves an unsupported
-"state-of-the-art" claim with no comparator in the paper.
-
-A good run also catches two things not in this table, because they emerge from
-the content rather than the markup: GenBank MZ457891 resolves to an unrelated
-rRNA sequence, and the inline equation reports `AUC = 0.78 ± 0.04` while Table 1
-gives 0.78 with no spread.
-
-The eleven problems planted in `paper.docx` are listed in the README of the
-LaTeX version of this checker, which is not part of this repository.
