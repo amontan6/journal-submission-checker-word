@@ -12,22 +12,6 @@ submission checker reads `.docx` files directly.
 That is the whole workflow. The agent extracts the document itself and reports
 back.
 
-## Why not just export to text first
-
-That was the old advice, and it works, but it throws away the checks that
-matter most on the day you submit. A `.docx` is a zip of XML; a plain-text
-export is the visible words and nothing else. Four things vanish:
-
-| Lost in export | Why you care |
-| --- | --- |
-| **Tracked changes** | Submitting with live revisions hands the editor your internal editing history. The journal's conversion may silently accept or reject them. |
-| **Comments** | "Is this accession public yet?" is both an embarrassment and a real unanswered question. |
-| **Field codes** | Whether a citation came from Zotero or was typed by hand is the single best predictor of which reference entries are wrong. |
-| **Hyperlink targets** | A link reading `github.com/lab/project` can point at a private working copy. Both render as plain text identically. |
-
-Heading structure survives too, so the agent knows which section a finding is in
-and can tell you where to look.
-
 ## Installing
 
 ```bash
