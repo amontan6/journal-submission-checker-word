@@ -1,7 +1,7 @@
 # The submission checker for Word and Google Docs
 
 Most people write papers in Word or Google Docs. This version of the journal
-submission checker reads `.docx` files directly — no export step.
+submission checker reads `.docx` files directly.
 
 ## Run it
 
