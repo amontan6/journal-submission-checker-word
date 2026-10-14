@@ -1,6 +1,6 @@
-# The submission checker for Word and Google Docs
+# The submission checker for Word
 
-Most people write papers in Word or Google Docs. This version of the journal
+Most people write papers in Word. This version of the journal
 submission checker reads `.docx` files directly.
 
 ## Run it
